@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>People Analytics — vi.co</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#F7F8FA;--surface:#FFFFFF;--border:#E8ECF0;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#9CA3AF;--blue:#2563EB;--green:#16A34A;--red:#DC2626;--orange:#EA580C;--purple:#7C3AED;--teal:#0D9488;--amber:#D97706;--rose:#E11D48;--indigo:#4F46E5;--pink:#DB2777;--blue-bg:#EFF6FF;--green-bg:#F0FDF4;--red-bg:#FEF2F2;--orange-bg:#FFF7ED;--amber-bg:#FFFBEB;--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text-primary);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 40px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.header p{font-size:13px;color:var(--text-secondary);margin-top:2px}
+.header-badge{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600}
+.container{max-width:1360px;margin:0 auto;padding:32px 40px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;margin-top:36px}
+.section-label:first-child{margin-top:0}
+.kpi-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:8px}
+@media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.kpi.blue::before{background:var(--blue)}.kpi.green::before{background:var(--green)}.kpi.red::before{background:var(--red)}.kpi.orange::before{background:var(--orange)}.kpi.purple::before{background:var(--purple)}.kpi.amber::before{background:var(--amber)}.kpi.teal::before{background:var(--teal)}.kpi.rose::before{background:var(--rose)}
+.kpi-value{font-size:32px;font-weight:800;line-height:1;letter-spacing:-1px}
+.kpi.blue .kpi-value{color:var(--blue)}.kpi.green .kpi-value{color:var(--green)}.kpi.red .kpi-value{color:var(--red)}.kpi.orange .kpi-value{color:var(--orange)}.kpi.purple .kpi-value{color:var(--purple)}.kpi.amber .kpi-value{color:var(--amber)}.kpi.teal .kpi-value{color:var(--teal)}.kpi.rose .kpi-value{color:var(--rose)}
+.kpi-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}
+.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.grid-1{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+@media(max-width:1100px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.card-title{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-blue{background:var(--blue)}.dot-green{background:var(--green)}.dot-red{background:var(--red)}.dot-orange{background:var(--orange)}.dot-purple{background:var(--purple)}.dot-amber{background:var(--amber)}.dot-teal{background:var(--teal)}.dot-indigo{background:var(--indigo)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bg);color:var(--text-muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody td{padding:12px 16px;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--bg)}
+.num{font-weight:700}
+.pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.pill-green{background:var(--green-bg);color:var(--green);border:1px solid #BBF7D0}
+.pill-red{background:var(--red-bg);color:var(--red);border:1px solid #FECACA}
+.pill-orange{background:var(--orange-bg);color:var(--orange);border:1px solid #FED7AA}
+.pill-blue{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE}
+.pill-amber{background:var(--amber-bg);color:var(--amber);border:1px solid #FDE68A}
+.alert{background:#FFFBEB;border:1px solid #FDE68A;border-left:4px solid var(--amber);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px}
+.alert-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.alert-text{font-size:13px;color:#92400E;line-height:1.7}
+.alert-text strong{color:#78350F;font-weight:700}
+.footer{text-align:center;padding:32px 0 24px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:40px}
+</style>
+</head>
+<body>
+<header class="header">
+  <div>
+    <h1>People Analytics Dashboard</h1>
+    <p>vi.co &nbsp;&middot;&nbsp; Updated 13 May 2026 &nbsp;&middot;&nbsp; Source: BambooHR</p>
+  </div>
+  <div class="header-badge">Auto-updated monthly</div>
+</header>
+<main class="container">
+  <div class="section-label">Key Metrics &mdash; 2026 YTD</div>
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-value">129</div><div class="kpi-label">Active Headcount</div><div class="kpi-sub">As of today</div></div>
+    <div class="kpi green"><div class="kpi-value">39</div><div class="kpi-label">New Hires &mdash; 2026</div><div class="kpi-sub">YTD</div></div>
+    <div class="kpi red"><div class="kpi-value">21</div><div class="kpi-label">Total Exits &mdash; 2026</div><div class="kpi-sub">YTD</div></div>
+    <div class="kpi orange"><div class="kpi-value">5</div><div class="kpi-label">Voluntary &mdash; 2026</div><div class="kpi-sub">Resignations YTD</div></div>
+    <div class="kpi rose"><div class="kpi-value">16</div><div class="kpi-label">Involuntary &mdash; 2026</div><div class="kpi-sub">Terminations YTD</div></div>
+    <div class="kpi amber"><div class="kpi-value">17.6%</div><div class="kpi-label">Turnover Rate 2026</div><div class="kpi-sub">Exits / Avg HC</div></div>
+    <div class="kpi purple"><div class="kpi-value">2.0</div><div class="kpi-label">Avg. Tenure</div><div class="kpi-sub">Years (active)</div></div>
+    <div class="kpi teal"><div class="kpi-value">122</div><div class="kpi-label">All-Time Exits</div><div class="kpi-sub">Historical total</div></div>
+  </div>
+  <div class="alert">
+    <div class="alert-icon">&#9888;</div>
+    <div class="alert-text">
+      <strong>2025 &mdash; Major Restructuring Year:</strong>
+      49 exits of which 40 were involuntary terminations (82%), driving a 45.2% Turnover Rate.
+      16 layoffs occurred on a single day (Feb 7) &mdash; primarily from Transform R&amp;D.<br>
+      <strong>In 2025&ndash;2026 the company strategically adopted AI tools, enabling leaner operations and directly driving workforce restructuring.</strong>
+    </div>
+  </div>
+  <div class="section-label">Annual Trends</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Year-End Headcount</div><div style="height:240px"><canvas id="cHC"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-green"></span>New Hires vs. Exits by Year</div><div style="height:240px"><canvas id="cHT"></canvas></div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><span class="dot dot-amber"></span>Annual Turnover Rate (%)</div><div style="height:240px"><canvas id="cTO"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-orange"></span>Voluntary vs. Involuntary Exits</div><div style="height:240px"><canvas id="cVI"></canvas></div></div>
+  </div>
+  <div class="section-label">Monthly Trend (2025&ndash;2026)</div>
+  <div class="grid-1">
+    <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Monthly Hires vs. Exits</div><div style="height:260px"><canvas id="cMon"></canvas></div></div>
+  </div>
+  <div class="section-label">Workforce Breakdown</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Headcount by Department</div><div style="height:280px"><canvas id="cDept"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-teal"></span>Headcount by Location</div><div style="height:280px"><canvas id="cLoc"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-purple"></span>Gender Distribution</div><div style="height:280px"><canvas id="cGen"></canvas></div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><span class="dot dot-green"></span>Tenure Distribution</div><div style="height:220px"><canvas id="cTen"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-indigo"></span>Headcount by Division</div><div style="height:220px"><canvas id="cDiv"></canvas></div></div>
+  </div>
+  <div class="section-label">Exit Reasons (2023&ndash;2026)</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><span class="dot dot-orange"></span>Voluntary Exit Reasons</div><div style="height:240px"><canvas id="cVR"></canvas></div></div>
+    <div class="card"><div class="card-title"><span class="dot dot-red"></span>Involuntary Exit Reasons</div><div style="height:240px"><canvas id="cIR"></canvas></div></div>
+  </div>
+  <div class="section-label">Annual Summary Table</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="table-wrap"><table>
+      <thead><tr><th>Year</th><th>Headcount</th><th>New Hires</th><th>Total Exits</th><th>Voluntary</th><th>Involuntary</th><th>Turnover Rate</th><th>Net Change</th></tr></thead>
+      <tbody><tr><td class="num">2020</td><td class="num">21</td><td><span class="pill pill-green">+4</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+4</td></tr>
+<tr><td class="num">2021</td><td class="num">51</td><td><span class="pill pill-green">+30</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+30</td></tr>
+<tr><td class="num">2022</td><td class="num">82</td><td><span class="pill pill-green">+42</span></td><td class="num">11</td><td><span class="pill pill-orange">1</span></td><td><span class="pill pill-red">10</span></td><td><span class="pill pill-blue">16.5%</span></td><td class="num" style="color:var(--green)">+31</td></tr>
+<tr><td class="num">2023</td><td class="num">88</td><td><span class="pill pill-green">+27</span></td><td class="num">21</td><td><span class="pill pill-orange">7</span></td><td><span class="pill pill-red">14</span></td><td><span class="pill pill-blue">24.3%</span></td><td class="num" style="color:var(--green)">+6</td></tr>
+<tr><td class="num">2024</td><td class="num">102</td><td><span class="pill pill-green">+34</span></td><td class="num">20</td><td><span class="pill pill-orange">11</span></td><td><span class="pill pill-red">9</span></td><td><span class="pill pill-blue">20.8%</span></td><td class="num" style="color:var(--green)">+14</td></tr>
+<tr><td class="num">2025</td><td class="num">111</td><td><span class="pill pill-green">+58</span></td><td class="num">49</td><td><span class="pill pill-orange">8</span></td><td><span class="pill pill-red">40</span></td><td><span class="pill pill-amber">45.2%</span></td><td class="num" style="color:var(--green)">+9</td></tr>
+<tr><td class="num">2026</td><td class="num">126</td><td><span class="pill pill-green">+39</span></td><td class="num">21</td><td><span class="pill pill-orange">5</span></td><td><span class="pill pill-red">16</span></td><td><span class="pill pill-blue">17.6%</span></td><td class="num" style="color:var(--green)">+18</td></tr></tbody>
+    </table></div>
+  </div>
+</main>
+<footer class="footer">
+  vi.co People Analytics &nbsp;&middot;&nbsp; Source: BambooHR &nbsp;&middot;&nbsp; Turnover = Exits / Avg Headcount &nbsp;&middot;&nbsp; 13 May 2026
+</footer>
+<script>
+const C={blue:'#2563EB',green:'#16A34A',red:'#DC2626',orange:'#EA580C',purple:'#7C3AED',teal:'#0D9488',amber:'#D97706',rose:'#E11D48',indigo:'#4F46E5',pink:'#DB2777'};
+const PAL=Object.values(C);
+Chart.defaults.font.family="'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif";
+Chart.defaults.font.size=12;Chart.defaults.color='#6B7280';Chart.defaults.borderColor='#E8ECF0';
+Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.padding=16;
+const YRS=["2020", "2021", "2022", "2023", "2024", "2025", "2026"];
+new Chart('cHC',{type:'line',data:{labels:YRS,datasets:[{label:'Headcount',data:[21, 51, 82, 88, 102, 111, 126],borderColor:C.blue,backgroundColor:'rgba(37,99,235,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.blue,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cHT',{type:'bar',data:{labels:YRS,datasets:[{label:'New Hires',data:[4, 30, 42, 27, 34, 58, 39],backgroundColor:C.green,borderRadius:4},{label:'Exits',data:[0, 0, 11, 21, 20, 49, 21],backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cTO',{type:'line',data:{labels:YRS,datasets:[{label:'Turnover %',data:[0.0, 0.0, 16.5, 24.3, 20.8, 45.2, 17.6],borderColor:C.amber,backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.amber,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'},ticks:{callback:v=>v+'%'}}}}});
+new Chart('cVI',{type:'bar',data:{labels:YRS,datasets:[{label:'Voluntary',data:[0, 0, 1, 7, 11, 8, 5],backgroundColor:C.orange,borderRadius:4},{label:'Involuntary',data:[0, 0, 10, 14, 9, 40, 16],backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cMon',{type:'bar',data:{labels:["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10", "2026-11", "2026-12"],datasets:[{label:'New Hires',data:[11, 4, 1, 1, 3, 6, 1, 3, 12, 3, 5, 8, 9, 5, 11, 9, 5, 0, 0, 0, 0, 0, 0, 0],backgroundColor:'rgba(22,163,74,.75)',borderRadius:3},{label:'Exits',data:[2, 22, 0, 6, 4, 4, 3, 1, 2, 1, 1, 3, 3, 5, 3, 8, 2, 0, 0, 0, 0, 0, 0, 0],backgroundColor:'rgba(220,38,38,.75)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cDept',{type:'bar',data:{labels:["Sales", "Vi Product", "Data", "Engineering", "Transform R&D", "Acquire Deployment", "General", "HR", "Acquire Product", "Acquire Client Services"],datasets:[{data:[23, 21, 14, 14, 9, 8, 6, 4, 4, 4],backgroundColor:PAL,borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+new Chart('cLoc',{type:'doughnut',data:{labels:["Israel", "USA - Remote", "USA - NY", "USA - Austin", "USA - Nashville", "Europe", "Canada", "LATAM"],datasets:[{data:[55, 52, 8, 4, 4, 2, 1, 1],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+new Chart('cGen',{type:'doughnut',data:{labels:["Female", "Male"],datasets:[{data:[40, 87],backgroundColor:[C.blue,C.pink,C.teal],borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}});
+new Chart('cTen',{type:'bar',data:{labels:['< 1 yr','1-2 yrs','2-4 yrs','4+ yrs'],datasets:[{data:[62, 19, 24, 24],backgroundColor:[C.red,C.orange,C.amber,C.green],borderRadius:6,barThickness:36}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cDiv',{type:'doughnut',data:{labels:["R&D", "Product", "S&M", "G&A", "COGS"],datasets:[{data:[40, 30, 26, 16, 15],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+new Chart('cVR',{type:'bar',data:{labels:["Other employment", "Personal Issues", "Changes in company needs", "Performance", "Relocation", "End of Season", "Closing company"],datasets:[{data:[15, 8, 2, 2, 1, 1, 1],backgroundColor:'rgba(234,88,12,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+new Chart('cIR',{type:'bar',data:{labels:["Lay off", "Performance", "Changes in company needs", "Personal Issues", "End of Season", "Other employment"],datasets:[{data:[34, 22, 17, 2, 2, 1],backgroundColor:'rgba(220,38,38,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+</script>
+</body>
+</html>
