@@ -194,13 +194,13 @@ html = """<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#F7F8FA;--surface:#FFFFFF;--border:#E8ECF0;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#9CA3AF;--blue:#2563EB;--green:#16A34A;--red:#DC2626;--orange:#EA580C;--purple:#7C3AED;--teal:#0D9488;--amber:#D97706;--rose:#E11D48;--indigo:#4F46E5;--pink:#DB2777;--lime:#65A30D;--sky:#0284C7;--blue-bg:#EFF6FF;--green-bg:#F0FDF4;--red-bg:#FEF2F2;--orange-bg:#FFF7ED;--amber-bg:#FFFBEB;--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04)}
+:root{--bg:#F5F6FA;--surface:#FFFFFF;--border:#E2E5EF;--text-primary:#0F1629;--text-secondary:#5A6478;--text-muted:#94A3B8;--blue:#4338CA;--green:#059669;--red:#DC2626;--orange:#7C3AED;--purple:#3730A3;--teal:#0891B2;--amber:#64748B;--rose:#BE185D;--indigo:#818CF8;--pink:#A5B4FC;--lime:#6366F1;--sky:#C7D2FE;--blue-bg:#EEF2FF;--green-bg:#ECFDF5;--red-bg:#FEF2F2;--orange-bg:#F5F3FF;--amber-bg:#F8FAFC;--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 3px rgba(67,56,202,.08),0 1px 2px rgba(67,56,202,.04)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text-primary);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 40px;display:flex;align-items:center;justify-content:space-between}
 .header h1{font-size:20px;font-weight:800;letter-spacing:-.4px}
 .header p{font-size:13px;color:var(--text-secondary);margin-top:2px}
-.badge{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600}
+.badge{background:var(--blue-bg);color:var(--blue);border:1px solid #C7D2FE;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600}
 .container{max-width:1360px;margin:0 auto;padding:32px 40px}
 .section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;margin-top:36px}
 .section-label:first-child{margin-top:0}
@@ -210,7 +210,7 @@ body{font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;background:
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
 .kpi.blue::before{background:var(--blue)}.kpi.green::before{background:var(--green)}.kpi.red::before{background:var(--red)}.kpi.orange::before{background:var(--orange)}.kpi.purple::before{background:var(--purple)}.kpi.amber::before{background:var(--amber)}.kpi.teal::before{background:var(--teal)}.kpi.rose::before{background:var(--rose)}
 .kpi-value{font-size:32px;font-weight:800;line-height:1;letter-spacing:-1px}
-.kpi.blue .kpi-value{color:var(--blue)}.kpi.green .kpi-value{color:var(--green)}.kpi.red .kpi-value{color:var(--red)}.kpi.orange .kpi-value{color:var(--orange)}.kpi.purple .kpi-value{color:var(--purple)}.kpi.amber .kpi-value{color:var(--amber)}.kpi.teal .kpi-value{color:var(--teal)}.kpi.rose .kpi-value{color:var(--rose)}
+.kpi.blue .kpi-value{color:#4338CA}.kpi.green .kpi-value{color:#059669}.kpi.red .kpi-value{color:#DC2626}.kpi.orange .kpi-value{color:#818CF8}.kpi.purple .kpi-value{color:#3730A3}.kpi.amber .kpi-value{color:#64748B}.kpi.teal .kpi-value{color:#0891B2}.kpi.rose .kpi-value{color:#6366F1}
 .kpi-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}
 .kpi-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
@@ -230,12 +230,12 @@ tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:var(--bg)}
 .num{font-weight:700}
 .pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
-.pill-green{background:var(--green-bg);color:var(--green);border:1px solid #BBF7D0}
-.pill-red{background:var(--red-bg);color:var(--red);border:1px solid #FECACA}
-.pill-orange{background:var(--orange-bg);color:var(--orange);border:1px solid #FED7AA}
-.pill-blue{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE}
-.pill-amber{background:var(--amber-bg);color:var(--amber);border:1px solid #FDE68A}
-.pill-purple{background:#F5F3FF;color:var(--purple);border:1px solid #DDD6FE}
+.pill-green{background:#ECFDF5;color:#059669;border:1px solid #A7F3D0}
+.pill-red{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA}
+.pill-orange{background:#EEF2FF;color:#818CF8;border:1px solid #C7D2FE}
+.pill-blue{background:#EEF2FF;color:#4338CA;border:1px solid #C7D2FE}
+.pill-amber{background:#EEF2FF;color:#6366F1;border:1px solid #C7D2FE}
+.pill-purple{background:#EEF2FF;color:#3730A3;border:1px solid #A5B4FC}
 .alert{background:#FFFBEB;border:1px solid #FDE68A;border-left:4px solid var(--amber);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px}
 .alert-icon{font-size:18px;flex-shrink:0;margin-top:1px}
 .alert-text{font-size:13px;color:#92400E;line-height:1.7}
@@ -248,7 +248,7 @@ tbody tr:hover td{background:var(--bg)}
 .q-btn-group{display:flex;gap:6px}
 .q-btn{font-family:inherit;font-size:12px;font-weight:700;border:1px solid var(--border);border-radius:8px;padding:7px 16px;background:var(--bg);color:var(--text-secondary);cursor:pointer;transition:all .15s}
 .q-btn:hover{border-color:var(--blue);color:var(--blue)}
-.q-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.q-btn.active{background:#4338CA;border-color:#4338CA;color:#fff}
 .q-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
 .q-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;text-align:center}
 .q-stat-value{font-size:28px;font-weight:800;letter-spacing:-1px}
@@ -406,8 +406,8 @@ tbody tr:hover td{background:var(--bg)}
 </footer>
 
 <script>
-const C={blue:'#2563EB',green:'#16A34A',red:'#DC2626',orange:'#EA580C',purple:'#7C3AED',teal:'#0D9488',amber:'#D97706',rose:'#E11D48',indigo:'#4F46E5',pink:'#DB2777',lime:'#65A30D',sky:'#0284C7'};
-const PAL=Object.values(C);
+const C={blue:'#4338CA',green:'#059669',red:'#DC2626',orange:'#7C3AED',purple:'#3730A3',teal:'#0891B2',amber:'#64748B',rose:'#818CF8',indigo:'#6366F1',pink:'#A5B4FC',lime:'#C7D2FE',sky:'#94A3B8'};
+const PAL=['#3730A3','#4338CA','#6366F1','#818CF8','#A5B4FC','#C7D2FE','#64748B','#94A3B8','#059669','#0891B2','#7C3AED','#DC2626'];
 Chart.defaults.font.family="'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif";
 Chart.defaults.font.size=12;Chart.defaults.color='#6B7280';Chart.defaults.borderColor='#E8ECF0';
 Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.padding=16;
@@ -505,16 +505,16 @@ function stat(val, label, color) {
 function renderChart1(labels, hires, terms) {
   if (qChart1) qChart1.destroy();
   qChart1 = new Chart('cQ1', {type:'bar',data:{labels,datasets:[
-    {label:'New Hires',data:hires,backgroundColor:C.green,borderRadius:4},
-    {label:'Exits',    data:terms,backgroundColor:C.red,  borderRadius:4}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+    {label:'New Hires',data:hires,backgroundColor:'#4338CA',borderRadius:4},
+    {label:'Exits',    data:terms,backgroundColor:'#94A3B8',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
 }
 function renderChart2(labels, vol, inv) {
   if (qChart2) qChart2.destroy();
   qChart2 = new Chart('cQ2', {type:'bar',data:{labels,datasets:[
-    {label:'Voluntary',  data:vol,backgroundColor:C.orange,borderRadius:4},
-    {label:'Involuntary',data:inv,backgroundColor:C.red,   borderRadius:4}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+    {label:'Voluntary',  data:vol,backgroundColor:'#A5B4FC',borderRadius:4},
+    {label:'Involuntary',data:inv,backgroundColor:'#3730A3',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
 }
 function renderReasons(vr, ir) {
   const vrL=Object.keys(vr), vrV=Object.values(vr);
@@ -522,12 +522,12 @@ function renderReasons(vr, ir) {
   if (qChartVR) qChartVR.destroy();
   if (qChartIR) qChartIR.destroy();
   if (vrL.length) {
-    qChartVR = new Chart('cQVR',{type:'bar',data:{labels:vrL,datasets:[{data:vrV,backgroundColor:'rgba(234,88,12,.8)',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+    qChartVR = new Chart('cQVR',{type:'bar',data:{labels:vrL,datasets:[{data:vrV,backgroundColor:'#818CF8',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#EEF2FF'}},y:{grid:{display:false}}}}});
   } else {
     document.getElementById('cQVR').getContext('2d').clearRect(0,0,9999,9999);
   }
   if (irL.length) {
-    qChartIR = new Chart('cQIR',{type:'bar',data:{labels:irL,datasets:[{data:irV,backgroundColor:'rgba(220,38,38,.8)',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+    qChartIR = new Chart('cQIR',{type:'bar',data:{labels:irL,datasets:[{data:irV,backgroundColor:'#3730A3',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#EEF2FF'}},y:{grid:{display:false}}}}});
   } else {
     document.getElementById('cQIR').getContext('2d').clearRect(0,0,9999,9999);
   }
@@ -557,18 +557,18 @@ renderQuarter();
 
 // ── Annual Charts ─────────────────────────────────────────────
 const YRS=""" + YEARS_JS + """;
-new Chart('cHC',{type:'line',data:{labels:YRS,datasets:[{label:'Headcount',data:""" + HC_JS + """,borderColor:C.blue,backgroundColor:'rgba(37,99,235,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.blue,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cHT',{type:'bar',data:{labels:YRS,datasets:[{label:'New Hires',data:""" + HIRES_JS + """,backgroundColor:C.green,borderRadius:4},{label:'Exits',data:""" + TERMS_JS + """,backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cTO',{type:'line',data:{labels:YRS,datasets:[{label:'Turnover %',data:""" + TURNOVER_JS + """,borderColor:C.amber,backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.amber,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'},ticks:{callback:v=>v+'%'}}}}});
-new Chart('cVI',{type:'bar',data:{labels:YRS,datasets:[{label:'Voluntary',data:""" + VOL_JS + """,backgroundColor:C.orange,borderRadius:4},{label:'Involuntary',data:""" + INV_JS + """,backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cMon',{type:'bar',data:{labels:""" + ML_JS + """,datasets:[{label:'New Hires',data:""" + MH_JS + """,backgroundColor:'rgba(22,163,74,.75)',borderRadius:3},{label:'Exits',data:""" + MT_JS + """,backgroundColor:'rgba(220,38,38,.75)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cDept',{type:'bar',data:{labels:""" + DEPT_L_JS + """,datasets:[{data:""" + DEPT_V_JS + """,backgroundColor:PAL,borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+new Chart('cHC',{type:'line',data:{labels:YRS,datasets:[{label:'Headcount',data:""" + HC_JS + """,borderColor:'#4338CA',backgroundColor:'rgba(67,56,202,.08)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#4338CA',pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
+new Chart('cHT',{type:'bar',data:{labels:YRS,datasets:[{label:'New Hires',data:""" + HIRES_JS + """,backgroundColor:'#4338CA',borderRadius:4},{label:'Exits',data:""" + TERMS_JS + """,backgroundColor:'#94A3B8',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
+new Chart('cTO',{type:'line',data:{labels:YRS,datasets:[{label:'Turnover %',data:""" + TURNOVER_JS + """,borderColor:'#818CF8',backgroundColor:'rgba(129,140,248,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#818CF8',pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#EEF2FF'},ticks:{callback:v=>v+'%'}}}}});
+new Chart('cVI',{type:'bar',data:{labels:YRS,datasets:[{label:'Voluntary',data:""" + VOL_JS + """,backgroundColor:'#A5B4FC',borderRadius:4},{label:'Involuntary',data:""" + INV_JS + """,backgroundColor:'#3730A3',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
+new Chart('cMon',{type:'bar',data:{labels:""" + ML_JS + """,datasets:[{label:'New Hires',data:""" + MH_JS + """,backgroundColor:'#6366F1',borderRadius:3},{label:'Exits',data:""" + MT_JS + """,backgroundColor:'#94A3B8',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
+new Chart('cDept',{type:'bar',data:{labels:""" + DEPT_L_JS + """,datasets:[{data:""" + DEPT_V_JS + """,backgroundColor:PAL,borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#EEF2FF'}},y:{grid:{display:false}}}}});
 new Chart('cLoc',{type:'doughnut',data:{labels:""" + LOC_L_JS + """,datasets:[{data:""" + LOC_V_JS + """,backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
-new Chart('cGen',{type:'doughnut',data:{labels:""" + GEN_L_JS + """,datasets:[{data:""" + GEN_V_JS + """,backgroundColor:[C.blue,C.pink,C.teal],borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}});
-new Chart('cTen',{type:'bar',data:{labels:['< 1 yr','1-2 yrs','2-4 yrs','4+ yrs'],datasets:[{data:""" + TEN_V_JS + """,backgroundColor:[C.red,C.orange,C.amber,C.green],borderRadius:6,barThickness:36}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cGen',{type:'doughnut',data:{labels:""" + GEN_L_JS + """,datasets:[{data:""" + GEN_V_JS + """,backgroundColor:['#4338CA','#A5B4FC','#64748B'],borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}});
+new Chart('cTen',{type:'bar',data:{labels:['< 1 yr','1-2 yrs','2-4 yrs','4+ yrs'],datasets:[{data:""" + TEN_V_JS + """,backgroundColor:['#C7D2FE','#818CF8','#6366F1','#3730A3'],borderRadius:6,barThickness:36}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#EEF2FF'}}}}});
 new Chart('cDiv',{type:'doughnut',data:{labels:""" + DIV_L_JS + """,datasets:[{data:""" + DIV_V_JS + """,backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
-new Chart('cVR',{type:'bar',data:{labels:""" + VR_L_JS + """,datasets:[{data:""" + VR_V_JS + """,backgroundColor:'rgba(234,88,12,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
-new Chart('cIR',{type:'bar',data:{labels:""" + IR_L_JS + """,datasets:[{data:""" + IR_V_JS + """,backgroundColor:'rgba(220,38,38,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+new Chart('cVR',{type:'bar',data:{labels:""" + VR_L_JS + """,datasets:[{data:""" + VR_V_JS + """,backgroundColor:'#818CF8',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#EEF2FF'}},y:{grid:{display:false}}}}});
+new Chart('cIR',{type:'bar',data:{labels:""" + IR_L_JS + """,datasets:[{data:""" + IR_V_JS + """,backgroundColor:'#3730A3',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#EEF2FF'}},y:{grid:{display:false}}}}});
 </script>
 </body>
 </html>"""
