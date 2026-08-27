@@ -8,13 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#F7F8FA;--surface:#FFFFFF;--border:#E8ECF0;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#9CA3AF;--blue:#2563EB;--green:#16A34A;--red:#DC2626;--orange:#EA580C;--purple:#7C3AED;--teal:#0D9488;--amber:#D97706;--rose:#E11D48;--indigo:#4F46E5;--pink:#DB2777;--blue-bg:#EFF6FF;--green-bg:#F0FDF4;--red-bg:#FEF2F2;--orange-bg:#FFF7ED;--amber-bg:#FFFBEB;--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04)}
+:root{--bg:#F7F8FA;--surface:#FFFFFF;--border:#E8ECF0;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#9CA3AF;--blue:#2563EB;--green:#16A34A;--red:#DC2626;--orange:#EA580C;--purple:#7C3AED;--teal:#0D9488;--amber:#D97706;--rose:#E11D48;--indigo:#4F46E5;--pink:#DB2777;--lime:#65A30D;--sky:#0284C7;--blue-bg:#EFF6FF;--green-bg:#F0FDF4;--red-bg:#FEF2F2;--orange-bg:#FFF7ED;--amber-bg:#FFFBEB;--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text-primary);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 40px;display:flex;align-items:center;justify-content:space-between}
 .header h1{font-size:20px;font-weight:800;letter-spacing:-.4px}
 .header p{font-size:13px;color:var(--text-secondary);margin-top:2px}
-.header-badge{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600}
+.badge{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600}
 .container{max-width:1360px;margin:0 auto;padding:32px 40px}
 .section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;margin-top:36px}
 .section-label:first-child{margin-top:0}
@@ -39,7 +39,7 @@ body{font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;background:
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead th{background:var(--bg);color:var(--text-muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
-tbody td{padding:12px 16px;border-bottom:1px solid var(--border)}
+tbody td{padding:11px 16px;border-bottom:1px solid var(--border)}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:var(--bg)}
 .num{font-weight:700}
@@ -49,10 +49,27 @@ tbody tr:hover td{background:var(--bg)}
 .pill-orange{background:var(--orange-bg);color:var(--orange);border:1px solid #FED7AA}
 .pill-blue{background:var(--blue-bg);color:var(--blue);border:1px solid #BFDBFE}
 .pill-amber{background:var(--amber-bg);color:var(--amber);border:1px solid #FDE68A}
+.pill-purple{background:#F5F3FF;color:var(--purple);border:1px solid #DDD6FE}
 .alert{background:#FFFBEB;border:1px solid #FDE68A;border-left:4px solid var(--amber);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px}
 .alert-icon{font-size:18px;flex-shrink:0;margin-top:1px}
 .alert-text{font-size:13px;color:#92400E;line-height:1.7}
 .alert-text strong{color:#78350F;font-weight:700}
+/* ── Quarterly filter UI ── */
+.q-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.q-controls label{font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.q-select{font-family:inherit;font-size:13px;font-weight:600;border:1px solid var(--border);border-radius:8px;padding:7px 12px;background:var(--bg);color:var(--text-primary);cursor:pointer;outline:none}
+.q-select:focus{border-color:var(--blue)}
+.q-btn-group{display:flex;gap:6px}
+.q-btn{font-family:inherit;font-size:12px;font-weight:700;border:1px solid var(--border);border-radius:8px;padding:7px 16px;background:var(--bg);color:var(--text-secondary);cursor:pointer;transition:all .15s}
+.q-btn:hover{border-color:var(--blue);color:var(--blue)}
+.q-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.q-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.q-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;text-align:center}
+.q-stat-value{font-size:28px;font-weight:800;letter-spacing:-1px}
+.q-stat-label{font-size:11px;color:var(--text-secondary);font-weight:600;margin-top:4px}
+.q-panel{display:none}
+.q-panel.visible{display:block}
+.detail-table tbody td{padding:9px 14px;font-size:12px}
 .footer{text-align:center;padding:32px 0 24px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:40px}
 </style>
 </head>
@@ -60,22 +77,25 @@ tbody tr:hover td{background:var(--bg)}
 <header class="header">
   <div>
     <h1>People Analytics Dashboard</h1>
-    <p>vi.co &nbsp;&middot;&nbsp; Updated 01 Aug 2026 &nbsp;&middot;&nbsp; Source: BambooHR</p>
+    <p>vi.co &nbsp;&middot;&nbsp; Updated 27 Aug 2026 &nbsp;&middot;&nbsp; Source: BambooHR</p>
   </div>
-  <div class="header-badge">Auto-updated monthly</div>
+  <div class="badge">Auto-updated monthly</div>
 </header>
 <main class="container">
+
+  <!-- KPIs -->
   <div class="section-label">Key Metrics &mdash; 2026 YTD</div>
   <div class="kpi-grid">
-    <div class="kpi blue"><div class="kpi-value">128</div><div class="kpi-label">Active Headcount</div><div class="kpi-sub">As of today</div></div>
-    <div class="kpi green"><div class="kpi-value">53</div><div class="kpi-label">New Hires &mdash; 2026</div><div class="kpi-sub">YTD</div></div>
-    <div class="kpi red"><div class="kpi-value">36</div><div class="kpi-label">Total Exits &mdash; 2026</div><div class="kpi-sub">YTD</div></div>
-    <div class="kpi orange"><div class="kpi-value">8</div><div class="kpi-label">Voluntary &mdash; 2026</div><div class="kpi-sub">Resignations YTD</div></div>
-    <div class="kpi rose"><div class="kpi-value">28</div><div class="kpi-label">Involuntary &mdash; 2026</div><div class="kpi-sub">Terminations YTD</div></div>
-    <div class="kpi amber"><div class="kpi-value">30.3%</div><div class="kpi-label">Turnover Rate 2026</div><div class="kpi-sub">Exits / Avg HC</div></div>
-    <div class="kpi purple"><div class="kpi-value">1.9</div><div class="kpi-label">Avg. Tenure</div><div class="kpi-sub">Years (active)</div></div>
+    <div class="kpi blue"><div class="kpi-value">129</div><div class="kpi-label">Active Headcount</div><div class="kpi-sub">As of today</div></div>
+    <div class="kpi green"><div class="kpi-value">56</div><div class="kpi-label">New Hires 2026</div><div class="kpi-sub">YTD</div></div>
+    <div class="kpi red"><div class="kpi-value">36</div><div class="kpi-label">Total Exits 2026</div><div class="kpi-sub">YTD</div></div>
+    <div class="kpi orange"><div class="kpi-value">8</div><div class="kpi-label">Voluntary 2026</div><div class="kpi-sub">Resignations</div></div>
+    <div class="kpi rose"><div class="kpi-value">28</div><div class="kpi-label">Involuntary 2026</div><div class="kpi-sub">Terminations</div></div>
+    <div class="kpi amber"><div class="kpi-value">33.6%</div><div class="kpi-label">Turnover Rate 2026</div><div class="kpi-sub">Exits / Avg HC</div></div>
+    <div class="kpi purple"><div class="kpi-value">2.0</div><div class="kpi-label">Avg. Tenure</div><div class="kpi-sub">Years (active)</div></div>
     <div class="kpi teal"><div class="kpi-value">137</div><div class="kpi-label">All-Time Exits</div><div class="kpi-sub">Historical total</div></div>
   </div>
+
   <div class="alert">
     <div class="alert-icon">&#9888;</div>
     <div class="alert-text">
@@ -85,6 +105,72 @@ tbody tr:hover td{background:var(--bg)}
       <strong>In 2025&ndash;2026 the company strategically adopted AI tools, enabling leaner operations and directly driving workforce restructuring.</strong>
     </div>
   </div>
+
+  <!-- ══ QUARTERLY DRILL-DOWN ══════════════════════════════════ -->
+  <div class="section-label">Quarterly Breakdown</div>
+  <div class="q-controls">
+    <label>Year</label>
+    <select class="q-select" id="qYear" onchange="renderQuarter()"><option value="2026" selected>2026</option><option value="2025" >2025</option><option value="2024" >2024</option><option value="2023" >2023</option><option value="2022" >2022</option><option value="2021" >2021</option><option value="2020" >2020</option></select>
+    <label style="margin-left:8px">Quarter</label>
+    <div class="q-btn-group" id="qBtns">
+      <button class="q-btn active" data-q="all" onclick="setQ('all')">All Year</button>
+      <button class="q-btn" data-q="Q1" onclick="setQ('Q1')">Q1</button>
+      <button class="q-btn" data-q="Q2" onclick="setQ('Q2')">Q2</button>
+      <button class="q-btn" data-q="Q3" onclick="setQ('Q3')">Q3</button>
+      <button class="q-btn" data-q="Q4" onclick="setQ('Q4')">Q4</button>
+    </div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="q-summary" id="qSummary"></div>
+
+  <!-- Charts row -->
+  <div class="grid-2" id="qCharts">
+    <div class="card">
+      <div class="card-title"><span class="dot dot-green"></span><span id="qChartTitle1">Quarterly Hires vs. Exits</span></div>
+      <div style="height:240px"><canvas id="cQ1"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span><span id="qChartTitle2">Quarterly Voluntary vs. Involuntary</span></div>
+      <div style="height:240px"><canvas id="cQ2"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Exit reasons -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span>Voluntary Exit Reasons</div>
+      <div style="height:220px"><canvas id="cQVR"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dot-red"></span>Involuntary Exit Reasons</div>
+      <div style="height:220px"><canvas id="cQIR"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Detail tables -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="dot dot-red"></span>Exits Detail</div>
+      <div class="table-wrap" style="max-height:320px;overflow-y:auto">
+        <table class="detail-table">
+          <thead><tr><th>Date</th><th>Name</th><th>Department</th><th>Type</th><th>Reason</th></tr></thead>
+          <tbody id="qExitsBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dot-green"></span>Hires Detail</div>
+      <div class="table-wrap" style="max-height:320px;overflow-y:auto">
+        <table class="detail-table">
+          <thead><tr><th>Date</th><th>Name</th><th>Department</th></tr></thead>
+          <tbody id="qHiresBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ANNUAL TRENDS ══════════════════════════════════════════ -->
   <div class="section-label">Annual Trends</div>
   <div class="grid-2">
     <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Year-End Headcount</div><div style="height:240px"><canvas id="cHC"></canvas></div></div>
@@ -94,10 +180,13 @@ tbody tr:hover td{background:var(--bg)}
     <div class="card"><div class="card-title"><span class="dot dot-amber"></span>Annual Turnover Rate (%)</div><div style="height:240px"><canvas id="cTO"></canvas></div></div>
     <div class="card"><div class="card-title"><span class="dot dot-orange"></span>Voluntary vs. Involuntary Exits</div><div style="height:240px"><canvas id="cVI"></canvas></div></div>
   </div>
+
   <div class="section-label">Monthly Trend (2025&ndash;2026)</div>
   <div class="grid-1">
     <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Monthly Hires vs. Exits</div><div style="height:260px"><canvas id="cMon"></canvas></div></div>
   </div>
+
+  <!-- ══ WORKFORCE BREAKDOWN ════════════════════════════════════ -->
   <div class="section-label">Workforce Breakdown</div>
   <div class="grid-3">
     <div class="card"><div class="card-title"><span class="dot dot-blue"></span>Headcount by Department</div><div style="height:280px"><canvas id="cDept"></canvas></div></div>
@@ -108,45 +197,196 @@ tbody tr:hover td{background:var(--bg)}
     <div class="card"><div class="card-title"><span class="dot dot-green"></span>Tenure Distribution</div><div style="height:220px"><canvas id="cTen"></canvas></div></div>
     <div class="card"><div class="card-title"><span class="dot dot-indigo"></span>Headcount by Division</div><div style="height:220px"><canvas id="cDiv"></canvas></div></div>
   </div>
-  <div class="section-label">Exit Reasons (2023&ndash;2026)</div>
+
+  <!-- ══ ALL-TIME EXIT REASONS ══════════════════════════════════ -->
+  <div class="section-label">Exit Reasons — All Time (2023&ndash;2026)</div>
   <div class="grid-2">
     <div class="card"><div class="card-title"><span class="dot dot-orange"></span>Voluntary Exit Reasons</div><div style="height:240px"><canvas id="cVR"></canvas></div></div>
     <div class="card"><div class="card-title"><span class="dot dot-red"></span>Involuntary Exit Reasons</div><div style="height:240px"><canvas id="cIR"></canvas></div></div>
   </div>
+
+  <!-- ══ ANNUAL TABLE ═══════════════════════════════════════════ -->
   <div class="section-label">Annual Summary Table</div>
   <div class="card" style="padding:0;overflow:hidden">
     <div class="table-wrap"><table>
       <thead><tr><th>Year</th><th>Headcount</th><th>New Hires</th><th>Total Exits</th><th>Voluntary</th><th>Involuntary</th><th>Turnover Rate</th><th>Net Change</th></tr></thead>
-      <tbody><tr><td class="num">2020</td><td class="num">21</td><td><span class="pill pill-green">+4</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+4</td></tr>
-<tr><td class="num">2021</td><td class="num">51</td><td><span class="pill pill-green">+30</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+30</td></tr>
-<tr><td class="num">2022</td><td class="num">82</td><td><span class="pill pill-green">+42</span></td><td class="num">11</td><td><span class="pill pill-orange">1</span></td><td><span class="pill pill-red">10</span></td><td><span class="pill pill-blue">16.5%</span></td><td class="num" style="color:var(--green)">+31</td></tr>
-<tr><td class="num">2023</td><td class="num">88</td><td><span class="pill pill-green">+27</span></td><td class="num">21</td><td><span class="pill pill-orange">7</span></td><td><span class="pill pill-red">14</span></td><td><span class="pill pill-blue">24.3%</span></td><td class="num" style="color:var(--green)">+6</td></tr>
-<tr><td class="num">2024</td><td class="num">102</td><td><span class="pill pill-green">+34</span></td><td class="num">20</td><td><span class="pill pill-orange">11</span></td><td><span class="pill pill-red">9</span></td><td><span class="pill pill-blue">20.8%</span></td><td class="num" style="color:var(--green)">+14</td></tr>
-<tr><td class="num">2025</td><td class="num">111</td><td><span class="pill pill-green">+58</span></td><td class="num">49</td><td><span class="pill pill-orange">8</span></td><td><span class="pill pill-red">40</span></td><td><span class="pill pill-amber">45.2%</span></td><td class="num" style="color:var(--green)">+9</td></tr>
-<tr><td class="num">2026</td><td class="num">126</td><td><span class="pill pill-green">+53</span></td><td class="num">36</td><td><span class="pill pill-orange">8</span></td><td><span class="pill pill-red">28</span></td><td><span class="pill pill-amber">30.3%</span></td><td class="num" style="color:var(--green)">+17</td></tr></tbody>
+      <tbody><tr><td class="num">2020</td><td class="num">6</td><td><span class="pill pill-green">+4</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+4</td></tr>
+<tr><td class="num">2021</td><td class="num">20</td><td><span class="pill pill-green">+30</span></td><td class="num">0</td><td><span class="pill pill-orange">0</span></td><td><span class="pill pill-red">0</span></td><td><span class="pill pill-blue">0.0%</span></td><td class="num" style="color:var(--green)">+30</td></tr>
+<tr><td class="num">2022</td><td class="num">29</td><td><span class="pill pill-green">+42</span></td><td class="num">11</td><td><span class="pill pill-orange">1</span></td><td><span class="pill pill-red">10</span></td><td><span class="pill pill-amber">44.9%</span></td><td class="num" style="color:var(--green)">+31</td></tr>
+<tr><td class="num">2023</td><td class="num">36</td><td><span class="pill pill-green">+27</span></td><td class="num">21</td><td><span class="pill pill-orange">7</span></td><td><span class="pill pill-red">14</span></td><td><span class="pill pill-amber">64.6%</span></td><td class="num" style="color:var(--green)">+6</td></tr>
+<tr><td class="num">2024</td><td class="num">49</td><td><span class="pill pill-green">+34</span></td><td class="num">20</td><td><span class="pill pill-orange">11</span></td><td><span class="pill pill-red">9</span></td><td><span class="pill pill-amber">46.5%</span></td><td class="num" style="color:var(--green)">+14</td></tr>
+<tr><td class="num">2025</td><td class="num">84</td><td><span class="pill pill-green">+58</span></td><td class="num">49</td><td><span class="pill pill-orange">8</span></td><td><span class="pill pill-red">40</span></td><td><span class="pill pill-amber">72.6%</span></td><td class="num" style="color:var(--green)">+9</td></tr>
+<tr><td class="num">2026</td><td class="num">129</td><td><span class="pill pill-green">+56</span></td><td class="num">36</td><td><span class="pill pill-orange">8</span></td><td><span class="pill pill-red">28</span></td><td><span class="pill pill-amber">33.6%</span></td><td class="num" style="color:var(--green)">+20</td></tr></tbody>
     </table></div>
   </div>
+
 </main>
 <footer class="footer">
-  vi.co People Analytics &nbsp;&middot;&nbsp; Source: BambooHR &nbsp;&middot;&nbsp; Turnover = Exits / Avg Headcount &nbsp;&middot;&nbsp; 01 August 2026
+  vi.co People Analytics &nbsp;&middot;&nbsp; Source: BambooHR &nbsp;&middot;&nbsp; Turnover = Exits / Avg Headcount &nbsp;&middot;&nbsp; 27 August 2026
 </footer>
+
 <script>
-const C={blue:'#2563EB',green:'#16A34A',red:'#DC2626',orange:'#EA580C',purple:'#7C3AED',teal:'#0D9488',amber:'#D97706',rose:'#E11D48',indigo:'#4F46E5',pink:'#DB2777'};
+const C={blue:'#2563EB',green:'#16A34A',red:'#DC2626',orange:'#EA580C',purple:'#7C3AED',teal:'#0D9488',amber:'#D97706',rose:'#E11D48',indigo:'#4F46E5',pink:'#DB2777',lime:'#65A30D',sky:'#0284C7'};
 const PAL=Object.values(C);
 Chart.defaults.font.family="'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif";
 Chart.defaults.font.size=12;Chart.defaults.color='#6B7280';Chart.defaults.borderColor='#E8ECF0';
 Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.padding=16;
+
+// ── Quarterly data ────────────────────────────────────────────
+const QDATA = {"2020-Q1": {"hires": 1, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Yana Fridman", "dept": "Finance", "date": "2020-02-23"}]}, "2020-Q2": {"hires": 3, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Alexandra Woodson", "dept": "Transform  Product", "date": "2020-05-01"}, {"name": "Spencer Honeyman", "dept": "Sales", "date": "2020-05-01"}, {"name": "Peter Stipher", "dept": "Acquire General", "date": "2020-04-01"}]}, "2020-Q3": {"hires": 0, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": []}, "2020-Q4": {"hires": 0, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": []}, "2021-Q1": {"hires": 4, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Inti Torres", "dept": "Transform R&D", "date": "2021-01-20"}, {"name": "Ran Koli", "dept": "R&D Sanga", "date": "2021-02-07"}, {"name": "Roy Chorley", "dept": "Engineering", "date": "2021-02-01"}, {"name": "Stav Winstein", "dept": "Admin", "date": "2021-03-17"}]}, "2021-Q2": {"hires": 3, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Alon Cohen", "dept": "Product Sanga", "date": "2021-06-06"}, {"name": "Lucas Santana", "dept": "Transform R&D", "date": "2021-06-09"}, {"name": "Matias Rossi", "dept": "Transform Creative", "date": "2021-04-01"}]}, "2021-Q3": {"hires": 8, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Alicia Adams", "dept": "Transform R&D", "date": "2021-07-12"}, {"name": "Allon Hammar", "dept": "Data", "date": "2021-08-01"}, {"name": "Denis Reinoso", "dept": "Transform R&D", "date": "2021-08-06"}, {"name": "Idan Marom", "dept": "Engineering", "date": "2021-09-19"}, {"name": "Jose Estremadoyro Fort", "dept": "Transform R&D", "date": "2021-09-01"}, {"name": "Leandro Perez", "dept": "Transform R&D", "date": "2021-09-20"}, {"name": "Sahar Avraham", "dept": "Engineering", "date": "2021-09-01"}, {"name": "Erin Oncken", "dept": "Acquire S&M", "date": "2021-08-23"}]}, "2021-Q4": {"hires": 15, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Christian Roy", "dept": "Transform R&D", "date": "2021-10-12"}, {"name": "Eric Gustafson", "dept": "Transform Creative", "date": "2021-10-12"}, {"name": "Hila Revach", "dept": "Finance", "date": "2021-12-15"}, {"name": "Juan Seillant Perez", "dept": "Transform R&D", "date": "2021-12-13"}, {"name": "Katie Sutherland", "dept": "Sales", "date": "2021-11-01"}, {"name": "Kim Adams", "dept": "Transform Marketing", "date": "2021-10-12"}, {"name": "Matthew King", "dept": "Transform  Product", "date": "2021-10-12"}, {"name": "Maya Etstein", "dept": "Product Sanga", "date": "2021-11-29"}, {"name": "Micah Nolte", "dept": "Engineering", "date": "2021-10-12"}, {"name": "Shaked Nave", "dept": "Data", "date": "2021-11-01"}, {"name": "Talia Harris", "dept": "Admin", "date": "2021-10-20"}, {"name": "Xopher Pollard", "dept": "Transform R&D", "date": "2021-12-06"}, {"name": "Oscar Antino", "dept": "Vi Product", "date": "2021-11-23"}, {"name": "Riley Hall", "dept": "Acquire Client Services", "date": "2021-12-01"}, {"name": "Christy Leal", "dept": "Acquire Client Services", "date": "2021-11-01"}]}, "2022-Q1": {"hires": 8, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Amon Himmelman", "dept": "Data", "date": "2022-02-03"}, {"name": "Federico Bustos Fierro", "dept": "Transform R&D", "date": "2022-02-15"}, {"name": "Jon Robins", "dept": "Sales", "date": "2022-01-03"}, {"name": "Lihi Drori", "dept": "Vi Product", "date": "2022-01-09"}, {"name": "Li-or Israel", "dept": "QA", "date": "2022-03-08"}, {"name": "Manuel Garcia", "dept": "Transform R&D", "date": "2022-01-10"}, {"name": "Matias Bueno", "dept": "Transform R&D", "date": "2022-02-15"}, {"name": "Udi Ben-Baron", "dept": "Vi Frontier", "date": "2022-02-02"}]}, "2022-Q2": {"hires": 11, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": [{"name": "Yaara Fatael", "dept": "HR", "date": "2022-05-12"}, {"name": "Alon Kaduri", "dept": "Engineering", "date": "2022-05-08"}, {"name": "Andis Saunders", "dept": "Transform R&D", "date": "2022-05-03"}, {"name": "Chris Farina", "dept": "Transform  Product", "date": "2022-04-04"}, {"name": "Fernando Chavarria", "dept": "Transform R&D", "date": "2022-05-23"}, {"name": "Jennifer Van Overdam", "dept": "Transform  Product", "date": "2022-05-09"}, {"name": "Jose Porta", "dept": "Transform R&D", "date": "2022-04-04"}, {"name": "Manuel Herrera", "dept": "Transform R&D", "date": "2022-04-04"}, {"name": "Mauricio Vignale", "dept": "Transform R&D", "date": "2022-06-28"}, {"name": "Brian Weaver", "dept": "Acquire S&M", "date": "2022-05-30"}, {"name": "Jane Gerber", "dept": "Acquire Deployment", "date": "2022-05-01"}]}, "2022-Q3": {"hires": 11, "terms": 1, "vol": 0, "inv": 1, "vol_reasons": {}, "inv_reasons": {"Lay off": 1}, "exits_detail": [{"name": "Jon Robins", "dept": "Sales", "date": "2022-09-30", "type": "Termination (Involuntary)", "reason": "Lay off"}], "hires_detail": [{"name": "Anibal Blasutti", "dept": "Transform Creative", "date": "2022-07-11"}, {"name": "Anna Ukolova", "dept": "Transform Creative", "date": "2022-07-11"}, {"name": "Ely Cohn", "dept": "Sales", "date": "2022-07-26"}, {"name": "Vlasyslav Nosov", "dept": "Data", "date": "2022-07-10"}, {"name": "Guillermo Rivero", "dept": "Transform R&D", "date": "2022-08-15"}, {"name": "Diego Franca", "dept": "Transform R&D", "date": "2022-08-17"}, {"name": "Alexander Bukov", "dept": "Transform R&D", "date": "2022-08-15"}, {"name": "Cristian Barril", "dept": "Transform R&D", "date": "2022-08-29"}, {"name": "Rodrigo de Santiago Garcia", "dept": "Transform R&D", "date": "2022-08-29"}, {"name": "Daniella Kolber", "dept": "Marketing", "date": "2022-09-05"}, {"name": "Regina Anderson", "dept": "Transform R&D", "date": "2022-09-12"}]}, "2022-Q4": {"hires": 12, "terms": 10, "vol": 1, "inv": 9, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Closing company": 5, "Lay off": 2, "Performance": 2}, "exits_detail": [{"name": "Yaara Fatael", "dept": "HR", "date": "2022-10-31", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Alon Cohen", "dept": "Product Sanga", "date": "2022-10-18", "type": "Termination (Involuntary)", "reason": "Closing company"}, {"name": "Chen Toledano", "dept": "R&D Sanga", "date": "2022-10-18", "type": "Termination (Involuntary)", "reason": "Closing company"}, {"name": "Chris Farina", "dept": "Transform  Product", "date": "2022-10-03", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Jose Estremadoyro Fort", "dept": "Transform R&D", "date": "2022-11-04", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Matan Lachmish", "dept": "R&D Sanga", "date": "2022-10-18", "type": "Termination (Involuntary)", "reason": "Closing company"}, {"name": "Maya Etstein", "dept": "Product Sanga", "date": "2022-10-18", "type": "Termination (Involuntary)", "reason": "Closing company"}, {"name": "Ran Koli", "dept": "R&D Sanga", "date": "2022-10-18", "type": "Termination (Involuntary)", "reason": "Closing company"}, {"name": "Suzie Chen", "dept": "Content", "date": "2022-11-23", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Braxton Carroll", "dept": "Acquire Customer Success", "date": "2022-11-17", "type": "Termination (Involuntary)", "reason": "Performance"}], "hires_detail": [{"name": "Nicole Dao", "dept": "Sales", "date": "2022-10-10"}, {"name": "Ofir Dvir", "dept": "Data", "date": "2022-11-01"}, {"name": "Oded Shimoni", "dept": "Engineering", "date": "2022-11-06"}, {"name": "Tomer Kizel", "dept": "Engineering", "date": "2022-11-06"}, {"name": "Carmit Tzur Ramon", "dept": "HR", "date": "2022-12-04"}, {"name": "Dan Collins", "dept": "Acquire Product", "date": "2022-11-07"}, {"name": "Russ Gannon", "dept": "Acquire Deployment", "date": "2022-11-07"}, {"name": "Braxton Carroll", "dept": "Acquire Customer Success", "date": "2022-11-01"}, {"name": "Chris Finch", "dept": "Acquire R&D", "date": "2022-11-07"}, {"name": "Taralynn Castaneda", "dept": "Acquire Deployment", "date": "2022-11-07"}, {"name": "Brent Brown", "dept": "Account Manager, Wellness", "date": "2022-11-08"}, {"name": "Joseph Zoccali", "dept": "General", "date": "2022-12-09"}]}, "2023-Q1": {"hires": 10, "terms": 8, "vol": 2, "inv": 6, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Lay off": 5, "Performance": 1}, "exits_detail": [{"name": "Andis Saunders", "dept": "Transform R&D", "date": "2023-03-14", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Anibal Blasutti", "dept": "Transform Creative", "date": "2023-03-16", "type": "Resignation (Voluntary)", "reason": ""}, {"name": "Denis Reinoso", "dept": "Transform R&D", "date": "2023-03-13", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Inti Torres", "dept": "Transform R&D", "date": "2023-03-13", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Li-or Israel", "dept": "QA", "date": "2023-02-09", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Logan Schwartz", "dept": "Transform  Product", "date": "2023-01-31", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Lucas Santana", "dept": "Transform R&D", "date": "2023-03-13", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Brian Weaver", "dept": "Acquire S&M", "date": "2023-01-02", "type": "Termination (Involuntary)", "reason": "Performance"}], "hires_detail": [{"name": "Yoav Susz", "dept": "Sales", "date": "2023-01-23"}, {"name": "James Dickinson", "dept": "Acquire Client Services", "date": "2023-01-09"}, {"name": "Jordan Mould", "dept": "Acquire S&M", "date": "2023-01-19"}, {"name": "David Warren", "dept": "Sales", "date": "2023-01-23"}, {"name": "Ofer Wassermann", "dept": "Vi Product", "date": "2023-02-20"}, {"name": "Orr Ben Yosef", "dept": "Vi Product", "date": "2023-02-19"}, {"name": "Jennifer Chittim", "dept": "Sales", "date": "2023-03-27"}, {"name": "Eyal Maymon", "dept": "Game Studio", "date": "2023-01-01"}, {"name": "Gal Daniel", "dept": "Game Studio", "date": "2023-01-01"}, {"name": "Lior Bruder", "dept": "Game Studio", "date": "2023-01-01"}]}, "2023-Q2": {"hires": 6, "terms": 4, "vol": 1, "inv": 3, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Performance": 3}, "exits_detail": [{"name": "Ely Cohn", "dept": "Sales", "date": "2023-06-30", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Guillermo Rivero", "dept": "Transform R&D", "date": "2023-04-05", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Erin Oncken", "dept": "Acquire S&M", "date": "2023-06-01", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "David Warren", "dept": "Sales", "date": "2023-05-30", "type": "Termination (Involuntary)", "reason": "Performance"}], "hires_detail": [{"name": "Ronie Davidovich", "dept": "Game Studio", "date": "2023-05-01"}, {"name": "Thomas Ostrander II", "dept": "Acquire Customer Success", "date": "2023-05-01"}, {"name": "Jordana Tepper", "dept": "Sales", "date": "2023-06-01"}, {"name": "Ashlan Panaia", "dept": "Acquire Customer Success", "date": "2023-05-30"}, {"name": "Eric Hinderberger", "dept": "Acquire S&M", "date": "2023-06-19"}, {"name": "Ido Gvili", "dept": "Engineering", "date": "2023-06-18"}]}, "2023-Q3": {"hires": 3, "terms": 4, "vol": 2, "inv": 2, "vol_reasons": {"Relocation": 1, "Other employment": 1}, "inv_reasons": {"Performance": 2}, "exits_detail": [{"name": "Stav Winstein", "dept": "Admin", "date": "2023-07-12", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Daniella Kolber", "dept": "Marketing", "date": "2023-08-04", "type": "Resignation (Voluntary)", "reason": "Relocation"}, {"name": "Jane Gerber", "dept": "Acquire Deployment", "date": "2023-07-21", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Eric Hinderberger", "dept": "Acquire S&M", "date": "2023-09-11", "type": "Termination (Involuntary)", "reason": "Performance"}], "hires_detail": [{"name": "Margaret Hayden", "dept": "Acquire Deployment", "date": "2023-07-15"}, {"name": "Claire Satterfield", "dept": "Sales", "date": "2023-08-14"}, {"name": "Diego Penalba", "dept": "Transform R&D", "date": "2023-08-24"}]}, "2023-Q4": {"hires": 8, "terms": 5, "vol": 2, "inv": 3, "vol_reasons": {"Other employment": 1, "End of Season": 1}, "inv_reasons": {"Lay off": 1, "Performance": 1, "Changes in company needs": 1}, "exits_detail": [{"name": "Jeffrey Swett", "dept": "Transform  Product", "date": "2023-11-01", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Vlasyslav Nosov", "dept": "Data", "date": "2023-12-05", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Nicole Dao", "dept": "Sales", "date": "2023-10-13", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Ronie Davidovich", "dept": "Game Studio", "date": "2023-10-18", "type": "Resignation (Voluntary)", "reason": "End of Season"}, {"name": "Eyal Maymon", "dept": "Game Studio", "date": "2023-11-01", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}], "hires_detail": [{"name": "Kristijan Talajic", "dept": "Sales", "date": "2023-10-09"}, {"name": "Yoni Barzilay", "dept": "Sales", "date": "2023-11-12"}, {"name": "Lior Bar", "dept": "Vi Product", "date": "2023-11-01"}, {"name": "Reoot Shayzaf", "dept": "General", "date": "2023-11-12"}, {"name": "Noa Solan", "dept": "Data", "date": "2023-11-12"}, {"name": "Matthew Prosperi", "dept": "Acquire Customer Success", "date": "2023-11-27"}, {"name": "Carmel Gan", "dept": "Game Studio", "date": "2023-11-20"}, {"name": "Maya Kertis", "dept": "Vi Product", "date": "2023-11-27"}]}, "2024-Q1": {"hires": 9, "terms": 7, "vol": 5, "inv": 2, "vol_reasons": {"Other employment": 4, "Personal Issues": 1}, "inv_reasons": {"Performance": 1, "Changes in company needs": 1}, "exits_detail": [{"name": "Fernando Chavarria", "dept": "Transform R&D", "date": "2024-01-19", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Shaked Nave", "dept": "Data", "date": "2024-02-08", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Peter Stipher", "dept": "Acquire General", "date": "2024-01-05", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Yoav Susz", "dept": "Sales", "date": "2024-02-01", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Jennifer Chittim", "dept": "Sales", "date": "2024-02-15", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Thomas Ostrander II", "dept": "Acquire Customer Success", "date": "2024-01-31", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Maya Kertis", "dept": "Vi Product", "date": "2024-02-26", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}], "hires_detail": [{"name": "Roy Tal", "dept": "Engineering", "date": "2024-01-21"}, {"name": "Bobby Doyle", "dept": "Sales", "date": "2024-01-01"}, {"name": "Shay Tepper", "dept": "Game Studio", "date": "2024-01-01"}, {"name": "Eduardo Rodriguez", "dept": "Transform R&D", "date": "2024-01-22"}, {"name": "Ben Shkalim", "dept": "Engineering", "date": "2024-02-09"}, {"name": "Lucy Swett", "dept": "Transform R&D", "date": "2024-02-12"}, {"name": "Mariel Lennon", "dept": "Sales", "date": "2024-03-01"}, {"name": "David Durham", "dept": "Sales", "date": "2024-03-18"}, {"name": "Bill Carey", "dept": "Transform Sales", "date": "2024-03-01"}]}, "2024-Q2": {"hires": 10, "terms": 4, "vol": 4, "inv": 0, "vol_reasons": {"Changes in company needs": 2, "Personal Issues": 2}, "inv_reasons": {}, "exits_detail": [{"name": "Lior Bruder", "dept": "Game Studio", "date": "2024-05-28", "type": "Resignation (Voluntary)", "reason": "Changes in company needs"}, {"name": "Ashlan Panaia", "dept": "Acquire Customer Success", "date": "2024-05-01", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Carmel Gan", "dept": "Game Studio", "date": "2024-04-01", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Shay Tepper", "dept": "Game Studio", "date": "2024-05-28", "type": "Resignation (Voluntary)", "reason": "Changes in company needs"}], "hires_detail": [{"name": "Jonathan Johnson", "dept": "Transform  Product", "date": "2024-06-04"}, {"name": "Ella Alperovitch", "dept": "Vi Product", "date": "2024-05-01"}, {"name": "Shahar Bar", "dept": "Game Studio", "date": "2024-05-01"}, {"name": "Katherine Segal", "dept": "Acquire Product", "date": "2024-04-18"}, {"name": "Michael Yee", "dept": "Transform R&D", "date": "2024-05-20"}, {"name": "Lindsay Gallimore", "dept": "Transform  Product", "date": "2024-05-31"}, {"name": "Itay Klainman", "dept": "Game Studio", "date": "2024-05-26"}, {"name": "Shaked Robinzon", "dept": "Vi Product", "date": "2024-06-23"}, {"name": "Noga Doron", "dept": "Game Studio", "date": "2024-06-23"}, {"name": "Terry Ziemniak", "dept": "", "date": "2024-04-16"}]}, "2024-Q3": {"hires": 11, "terms": 7, "vol": 1, "inv": 6, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Performance": 3, "Changes in company needs": 2}, "exits_detail": [{"name": "Mauricio Vignale", "dept": "Transform R&D", "date": "2024-07-15", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Alexander Bukov", "dept": "Transform R&D", "date": "2024-07-15", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Gal Daniel", "dept": "Game Studio", "date": "2024-07-11", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Kristijan Talajic", "dept": "Sales", "date": "2024-09-30", "type": "Termination (Involuntary)", "reason": ""}, {"name": "Yoni Barzilay", "dept": "Sales", "date": "2024-09-30", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "David Durham", "dept": "Sales", "date": "2024-07-31", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Bill Carey", "dept": "Transform Sales", "date": "2024-08-31", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}], "hires_detail": [{"name": "Woody Gover", "dept": "Data", "date": "2024-08-01"}, {"name": "Alon Goodman", "dept": "Data", "date": "2024-07-01"}, {"name": "John Cook", "dept": "Sales", "date": "2024-07-29"}, {"name": "Preston Browder", "dept": "Sales", "date": "2024-07-29"}, {"name": "Shalom Borohov", "dept": "Finance", "date": "2024-09-15"}, {"name": "Carlee Owens", "dept": "Sales", "date": "2024-08-26"}, {"name": "Charles Ellis", "dept": "Acquire Client Services", "date": "2024-09-01"}, {"name": "Or Shtalrid", "dept": "Vi Product", "date": "2024-09-02"}, {"name": "Yiftach Meitar", "dept": "Vi Product", "date": "2024-09-30"}, {"name": "Amy Cooper", "dept": "Acquire S&M", "date": "2024-09-23"}, {"name": "Mary Gdowik", "dept": "Acquire Product", "date": "2024-09-30"}]}, "2024-Q4": {"hires": 4, "terms": 2, "vol": 1, "inv": 1, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Performance": 1}, "exits_detail": [{"name": "Lihi Drori", "dept": "Vi Product", "date": "2024-11-10", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Orr Matarasso", "dept": "Engineering", "date": "2024-11-01", "type": "Resignation (Voluntary)", "reason": "Other employment"}], "hires_detail": [{"name": "Simon Shkilevich", "dept": "Engineering", "date": "2024-10-14"}, {"name": "Katherine Zega", "dept": "Acquire Product", "date": "2024-11-18"}, {"name": "George Williams", "dept": "Acquire Client Services", "date": "2024-12-10"}, {"name": "Shay Shavit", "dept": "Data", "date": "2024-12-23"}]}, "2025-Q1": {"hires": 16, "terms": 24, "vol": 0, "inv": 24, "vol_reasons": {}, "inv_reasons": {"Lay off": 15, "Changes in company needs": 8, "Personal Issues": 1}, "exits_detail": [{"name": "Alexandra Woodson", "dept": "Transform  Product", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Alicia Adams", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Amon Himmelman", "dept": "Data", "date": "2025-01-27", "type": "Termination (Involuntary)", "reason": "Personal Issues"}, {"name": "Anna Ukolova", "dept": "Transform Creative", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Federico Bustos Fierro", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Jose Porta", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Juan Seillant Perez", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Lawrence Cotter", "dept": "Transform General", "date": "2025-02-14", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Manuel Herrera", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Matias Bueno", "dept": "Transform R&D", "date": "2025-02-11", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Michael Swett", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Vanessa Walters", "dept": "Transform  Product", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Diego Franca", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Cristian Barril", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Rodrigo de Santiago Garcia", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Regina Anderson", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Jordana Tepper", "dept": "Sales", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Diego Penalba", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Eduardo Rodriguez", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Lucy Swett", "dept": "Transform R&D", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Michael Yee", "dept": "Transform R&D", "date": "2025-01-31", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Lindsay Gallimore", "dept": "Transform  Product", "date": "2025-02-07", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Terry Ziemniak", "dept": "", "date": "2025-02-03", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Charles Ellis", "dept": "Acquire Client Services", "date": "2025-02-14", "type": "Termination (Involuntary)", "reason": "Lay off"}], "hires_detail": [{"name": "Chelsea Pincus", "dept": "Sales", "date": "2025-01-01"}, {"name": "Daniel Boutarel", "dept": "Client Services", "date": "2025-01-01"}, {"name": "Shira Ben Zion", "dept": "Data", "date": "2025-01-13"}, {"name": "Adi Orpaz Idan", "dept": "Vi Product", "date": "2025-01-06"}, {"name": "George Marsico", "dept": "Sales", "date": "2025-01-20"}, {"name": "Michal Weinmann", "dept": "Vi Product", "date": "2025-01-06"}, {"name": "Eldad Ron", "dept": "Data", "date": "2025-02-12"}, {"name": "Oded Oron", "dept": "Game Studio", "date": "2025-01-01"}, {"name": "Mark Fridman", "dept": "Engineering", "date": "2025-01-06"}, {"name": "Eedo Mezer", "dept": "Vi Product", "date": "2025-02-17"}, {"name": "Ran Wright", "dept": "Engineering", "date": "2025-02-10"}, {"name": "John Bristow", "dept": "Sales", "date": "2025-01-27"}, {"name": "Omer Nimrodi", "dept": "Sales", "date": "2025-02-17"}, {"name": "Allison Edmonds", "dept": "Acquire Deployment", "date": "2025-01-16"}, {"name": "Michael Abramov", "dept": "General", "date": "2025-01-01"}, {"name": "Yuval Huga", "dept": "Engineering", "date": "2025-03-24"}]}, "2025-Q2": {"hires": 10, "terms": 14, "vol": 5, "inv": 8, "vol_reasons": {"Personal Issues": 2, "Other employment": 2, "Closing company": 1}, "inv_reasons": {"Changes in company needs": 3, "Lay off": 2, "Performance": 2, "Personal Issues": 1}, "exits_detail": [{"name": "Hod Epstein", "dept": "General", "date": "2025-04-30", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Elizabeth Garcia", "dept": "Transform  Product", "date": "2025-04-11", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Hila Revach", "dept": "Finance", "date": "2025-06-10", "type": "Death", "reason": "Death"}, {"name": "Jennifer Van Overdam", "dept": "Transform  Product", "date": "2025-05-16", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Matias Rossi", "dept": "Transform Creative", "date": "2025-05-01", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Moran Rashti", "dept": "Engineering", "date": "2025-06-30", "type": "Termination (Involuntary)", "reason": "Personal Issues"}, {"name": "Sahar Avraham", "dept": "Engineering", "date": "2025-05-04", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Noa Solan", "dept": "Data", "date": "2025-06-21", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Shahar Bar", "dept": "Game Studio", "date": "2025-06-16", "type": "Resignation (Voluntary)", "reason": "Closing company"}, {"name": "Itay Klainman", "dept": "Game Studio", "date": "2025-04-30", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Noga Doron", "dept": "Game Studio", "date": "2025-04-30", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Preston Browder", "dept": "Sales", "date": "2025-05-01", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Adi Orpaz Idan", "dept": "Vi Product", "date": "2025-04-30", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Oded Oron", "dept": "Game Studio", "date": "2025-04-30", "type": "Termination (Involuntary)", "reason": "Lay off"}], "hires_detail": [{"name": "Moran Rashti", "dept": "Engineering", "date": "2025-05-23"}, {"name": "Zoe Colman", "dept": "Client Services", "date": "2025-04-07"}, {"name": "Alon Ben Zion", "dept": "Vi Product", "date": "2025-05-07"}, {"name": "Omri Jan", "dept": "Data", "date": "2025-05-05"}, {"name": "Davis Miller", "dept": "Sales", "date": "2025-06-02"}, {"name": "Lucy Fang", "dept": "Sales", "date": "2025-06-02"}, {"name": "Dan Webb", "dept": "Sales", "date": "2025-06-09"}, {"name": "Maya Gilat", "dept": "Admin", "date": "2025-06-30"}, {"name": "Kyle Kobis", "dept": "Sales", "date": "2025-06-16"}, {"name": "Saskia Kolirin", "dept": "Finance", "date": "2025-06-11"}]}, "2025-Q3": {"hires": 16, "terms": 6, "vol": 2, "inv": 4, "vol_reasons": {"Other employment": 1, "Personal Issues": 1}, "inv_reasons": {"Performance": 3, "Lay off": 1}, "exits_detail": [{"name": "Conor Kenahan", "dept": "Content", "date": "2025-07-18", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Oded Shimoni", "dept": "Engineering", "date": "2025-09-25", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Amy Cooper", "dept": "Acquire S&M", "date": "2025-07-01", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Mark Fridman", "dept": "Engineering", "date": "2025-09-15", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Omer Nimrodi", "dept": "Sales", "date": "2025-07-01", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Ashley Nagaki", "dept": "Sales", "date": "2025-08-26", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}], "hires_detail": [{"name": "Sarah Brady", "dept": "Acquire Deployment", "date": "2025-08-01"}, {"name": "Jake Lever", "dept": "General", "date": "2025-09-01"}, {"name": "Jason Halfon", "dept": "Finance", "date": "2025-07-28"}, {"name": "Julie Goldman Tzach", "dept": "Vi Product", "date": "2025-08-25"}, {"name": "Yevgeny Khazan", "dept": "Vi Product", "date": "2025-09-01"}, {"name": "Tal Lael", "dept": "Engineering", "date": "2025-09-01"}, {"name": "Ashley Nagaki", "dept": "Sales", "date": "2025-08-18"}, {"name": "Jonathan Wojcik", "dept": "Sales", "date": "2025-09-01"}, {"name": "Leonardo Moronta Blanco", "dept": "Acquire Deployment", "date": "2025-09-15"}, {"name": "Itai Zeilig", "dept": "Engineering", "date": "2025-09-08"}, {"name": "Emily Schmitt", "dept": "Acquire Deployment", "date": "2025-09-01"}, {"name": "Tony Tornaritis", "dept": "HR", "date": "2025-09-01"}, {"name": "Neta Yinon", "dept": "Vi Product", "date": "2025-09-22"}, {"name": "Sefi Kligler", "dept": "Vi Product", "date": "2025-09-14"}, {"name": "Eitan Vesely", "dept": "Vi Product", "date": "2025-09-14"}, {"name": "Or Yair", "dept": "Data", "date": "2025-09-14"}]}, "2025-Q4": {"hires": 16, "terms": 5, "vol": 1, "inv": 4, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Lay off": 3, "Changes in company needs": 1}, "exits_detail": [{"name": "Tomer Kizel", "dept": "Engineering", "date": "2025-10-21", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Shalom Borohov", "dept": "Finance", "date": "2025-11-02", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Eedo Mezer", "dept": "Vi Product", "date": "2025-12-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "John Bristow", "dept": "Sales", "date": "2025-12-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Jason Halfon", "dept": "Finance", "date": "2025-12-31", "type": "Termination (Involuntary)", "reason": "Lay off"}], "hires_detail": [{"name": "Niv Ben Cohen", "dept": "Engineering", "date": "2025-10-20"}, {"name": "Janna Dobronevsky", "dept": "Vi Product", "date": "2025-10-15"}, {"name": "Netanel Fayoumi", "dept": "Engineering", "date": "2025-11-10"}, {"name": "Amir Gabay", "dept": "Data", "date": "2025-12-08"}, {"name": "Eric Wood Jr", "dept": "Acquire R&D", "date": "2025-10-01"}, {"name": "Bar Hoter", "dept": "Vi Product", "date": "2025-11-05"}, {"name": "Yuval Katz", "dept": "Vi Product", "date": "2025-11-17"}, {"name": "Nir Bachar", "dept": "Vi Product", "date": "2025-11-12"}, {"name": "Shy Peters", "dept": "Vi Product", "date": "2025-11-12"}, {"name": "Ido Toren", "dept": "Data", "date": "2025-12-24"}, {"name": "Samantha White", "dept": "Acquire Deployment", "date": "2025-12-01"}, {"name": "Courtney Morgan", "dept": "Sales", "date": "2025-12-01"}, {"name": "Shawn Snyder", "dept": "Engineering", "date": "2025-12-01"}, {"name": "Tom Hittinger", "dept": "Sales", "date": "2025-12-22"}, {"name": "Noam Nishry", "dept": "Sales", "date": "2025-12-22"}, {"name": "Daniel Felman", "dept": "Vi Frontier", "date": "2025-12-17"}]}, "2026-Q1": {"hires": 25, "terms": 12, "vol": 3, "inv": 9, "vol_reasons": {"Performance": 2, "Personal Issues": 1}, "inv_reasons": {"Performance": 3, "Lay off": 3, "End of Season": 1, "Other employment": 1, "Changes in company needs": 1}, "exits_detail": [{"name": "Jonathan Johnson", "dept": "Transform  Product", "date": "2026-03-31", "type": "Termination (Involuntary)", "reason": "End of Season"}, {"name": "Xopher Pollard", "dept": "Transform R&D", "date": "2026-01-19", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Woody Gover", "dept": "Data", "date": "2026-02-28", "type": "Resignation (Voluntary)", "reason": "Performance"}, {"name": "Alon Goodman", "dept": "Data", "date": "2026-02-28", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Michal Weinmann", "dept": "Vi Product", "date": "2026-02-28", "type": "Resignation (Voluntary)", "reason": "Performance"}, {"name": "Omri Jan", "dept": "Data", "date": "2026-03-31", "type": "Termination (Involuntary)", "reason": "Other employment"}, {"name": "Yevgeny Khazan", "dept": "Vi Product", "date": "2026-01-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Jonathan Wojcik", "dept": "Sales", "date": "2026-01-14", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Sefi Kligler", "dept": "Vi Product", "date": "2026-02-28", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Eitan Vesely", "dept": "Vi Product", "date": "2026-03-15", "type": "Termination (Involuntary)", "reason": "Changes in company needs"}, {"name": "Assaf Mashiah", "dept": "Vi Product", "date": "2026-03-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Shani Kadari", "dept": "Data", "date": "2026-02-17", "type": "Termination (Involuntary)", "reason": "Performance"}], "hires_detail": [{"name": "Tsahit Sofer", "dept": "Vi Product", "date": "2026-01-05"}, {"name": "Assaf Mashiah", "dept": "Vi Product", "date": "2026-01-05"}, {"name": "Lihi Dovrat- Bloch", "dept": "General", "date": "2026-01-01"}, {"name": "Gil Caspi", "dept": "Data", "date": "2026-01-05"}, {"name": "Elad Laks", "dept": "Data", "date": "2026-01-19"}, {"name": "Gal Fayena", "dept": "Finance", "date": "2026-01-06"}, {"name": "Shaked Eyal", "dept": "Engineering", "date": "2026-02-11"}, {"name": "Greg Sbardella", "dept": "Sales", "date": "2026-01-26"}, {"name": "Ted Jerse", "dept": "Sales", "date": "2026-01-19"}, {"name": "Noah Smith", "dept": "Sales", "date": "2026-02-02"}, {"name": "Shani Kadari", "dept": "Data", "date": "2026-01-13"}, {"name": "Tom Lowe", "dept": "Data", "date": "2026-03-02"}, {"name": "Liav Cohen", "dept": "Vi Product", "date": "2026-03-02"}, {"name": "Matan Pinkert", "dept": "Vi Product", "date": "2026-02-09"}, {"name": "Michael Titlebaum", "dept": "Sales", "date": "2026-02-09"}, {"name": "Ashton Adamek", "dept": "Engineering", "date": "2026-02-09"}, {"name": "Karen Cornwall", "dept": "Finance", "date": "2026-03-02"}, {"name": "Adi Baruch", "dept": "HR", "date": "2026-03-22"}, {"name": "Alon Gilat", "dept": "Vi Product", "date": "2026-03-29"}, {"name": "Edward Pantridge", "dept": "Vi Product", "date": "2026-03-02"}, {"name": "Andrew Hataway", "dept": "Acquire Customer Success", "date": "2026-03-11"}, {"name": "Andrea Richter", "dept": "HR", "date": "2026-03-16"}, {"name": "Matthew Crowson", "dept": "Vi Product", "date": "2026-03-16"}, {"name": "Aditya Jariwala", "dept": "Transform R&D", "date": "2026-03-31"}, {"name": "Robert Walker", "dept": "Sales", "date": "2026-03-30"}]}, "2026-Q2": {"hires": 20, "terms": 21, "vol": 4, "inv": 17, "vol_reasons": {"Personal Issues": 3, "Other employment": 1}, "inv_reasons": {"Lay off": 13, "Performance": 2, "End of Season": 2}, "exits_detail": [{"name": "Tom Lenga", "dept": "Vi Product", "date": "2026-05-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Ofir Dvir", "dept": "Data", "date": "2026-05-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Dan Collins", "dept": "Acquire Product", "date": "2026-06-30", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Ofer Wassermann", "dept": "Vi Product", "date": "2026-05-31", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Lior Bar", "dept": "Vi Product", "date": "2026-05-13", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Ella Alperovitch", "dept": "Vi Product", "date": "2026-06-30", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "John Cook", "dept": "Sales", "date": "2026-04-09", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "George Williams", "dept": "Acquire Client Services", "date": "2026-04-24", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Daniel Boutarel", "dept": "Client Services", "date": "2026-04-17", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Tal Lael", "dept": "Engineering", "date": "2026-04-27", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Janna Dobronevsky", "dept": "Vi Product", "date": "2026-04-30", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Yuval Katz", "dept": "Vi Product", "date": "2026-04-20", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Nir Bachar", "dept": "Vi Product", "date": "2026-05-12", "type": "Termination (Involuntary)", "reason": "End of Season"}, {"name": "Shy Peters", "dept": "Vi Product", "date": "2026-05-12", "type": "Termination (Involuntary)", "reason": "End of Season"}, {"name": "Tsahit Sofer", "dept": "Vi Product", "date": "2026-04-20", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Noam Nishry", "dept": "Sales", "date": "2026-05-12", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Gal Fayena", "dept": "Finance", "date": "2026-04-21", "type": "Termination (Involuntary)", "reason": "Performance"}, {"name": "Noah Smith", "dept": "Sales", "date": "2026-06-26", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}, {"name": "Matthew Crowson", "dept": "Vi Product", "date": "2026-06-30", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Yuval Sourasky", "dept": "Vi Product", "date": "2026-06-30", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Hector Jarrin", "dept": "Transform R&D", "date": "2026-05-21", "type": "Resignation (Voluntary)", "reason": "Personal Issues"}], "hires_detail": [{"name": "Omri Goldberg", "dept": "Data", "date": "2026-04-13"}, {"name": "Ilay Serr", "dept": "Engineering", "date": "2026-04-26"}, {"name": "Aidan Meyer", "dept": "Sales", "date": "2026-04-06"}, {"name": "Yuval Weizman", "dept": "Data", "date": "2026-04-06"}, {"name": "Tom Pinnes", "dept": "Vi Product", "date": "2026-04-05"}, {"name": "Eyal Marantz", "dept": "Data", "date": "2026-04-19"}, {"name": "Yuval Sourasky", "dept": "Vi Product", "date": "2026-04-12"}, {"name": "Chris Bergstrom", "dept": "Sales", "date": "2026-04-27"}, {"name": "Cory Erstling", "dept": "Sales", "date": "2026-04-06"}, {"name": "Daniel Lazar", "dept": "Vi Product", "date": "2026-05-03"}, {"name": "Hector Jarrin", "dept": "Transform R&D", "date": "2026-05-11"}, {"name": "Ron Refael", "dept": "Engineering", "date": "2026-05-11"}, {"name": "Robert Moore", "dept": "Acquire Customer Success", "date": "2026-05-18"}, {"name": "Richard Tran", "dept": "Engineering", "date": "2026-05-20"}, {"name": "Neil McKenzie", "dept": "Engineering", "date": "2026-05-27"}, {"name": "Derek Drechsler", "dept": "Engineering", "date": "2026-05-27"}, {"name": "Shelby Schwarz", "dept": "Sales", "date": "2026-06-01"}, {"name": "Lane Johns", "dept": "Engineering", "date": "2026-06-22"}, {"name": "Theodore Obenchain", "dept": "Sales", "date": "2026-06-30"}, {"name": "Neel Khanna", "dept": "Sales", "date": "2026-06-29"}]}, "2026-Q3": {"hires": 11, "terms": 3, "vol": 1, "inv": 2, "vol_reasons": {"Other employment": 1}, "inv_reasons": {"Lay off": 2}, "exits_detail": [{"name": "Jordan Mould", "dept": "Acquire S&M", "date": "2026-07-01", "type": "Termination (Involuntary)", "reason": "Lay off"}, {"name": "Ran Wright", "dept": "Engineering", "date": "2026-07-01", "type": "Resignation (Voluntary)", "reason": "Other employment"}, {"name": "Cory Erstling", "dept": "Sales", "date": "2026-07-15", "type": "Termination (Involuntary)", "reason": "Lay off"}], "hires_detail": [{"name": "David Sanders", "dept": "Sales", "date": "2026-07-08"}, {"name": "Jonathan Daniels", "dept": "Sales", "date": "2026-07-06"}, {"name": "Cassidy Wittman", "dept": "Acquire Deployment", "date": "2026-07-01"}, {"name": "Jordyn Stuart", "dept": "Sales", "date": "2026-07-20"}, {"name": "Nithin Joseph", "dept": "Engineering", "date": "2026-07-27"}, {"name": "Ryan Jensen", "dept": "Sales", "date": "2026-08-03"}, {"name": "Jennifer Engel", "dept": "Sales", "date": "2026-08-24"}, {"name": "Ira Raz Rosenberg", "dept": "", "date": "2026-09-02"}, {"name": "Alyssa Dubiel", "dept": "", "date": "2026-09-01"}, {"name": "Victoria Donaldson", "dept": "Sales", "date": "2026-08-24"}, {"name": "Sabrina Zbar", "dept": "Vi Product", "date": "2026-08-25"}]}, "2026-Q4": {"hires": 0, "terms": 0, "vol": 0, "inv": 0, "vol_reasons": {}, "inv_reasons": {}, "exits_detail": [], "hires_detail": []}};
+let currentQ = 'all';
+let qChart1, qChart2, qChartVR, qChartIR;
+
+function setQ(q) {
+  currentQ = q;
+  document.querySelectorAll('.q-btn').forEach(b => b.classList.toggle('active', b.dataset.q === q));
+  renderQuarter();
+}
+
+function getQKeys(year, q) {
+  if (q === 'all') return ['Q1','Q2','Q3','Q4'].map(qq => year+'-'+qq);
+  return [year+'-'+q];
+}
+
+function mergeQ(keys) {
+  const merged = {hires:0,terms:0,vol:0,inv:0,vol_reasons:{},inv_reasons:{},exits_detail:[],hires_detail:[]};
+  keys.forEach(k => {
+    const d = QDATA[k] || {};
+    merged.hires += d.hires||0; merged.terms += d.terms||0;
+    merged.vol   += d.vol||0;   merged.inv   += d.inv||0;
+    Object.entries(d.vol_reasons||{}).forEach(([r,c])=>merged.vol_reasons[r]=(merged.vol_reasons[r]||0)+c);
+    Object.entries(d.inv_reasons||{}).forEach(([r,c])=>merged.inv_reasons[r]=(merged.inv_reasons[r]||0)+c);
+    (d.exits_detail||[]).forEach(x=>merged.exits_detail.push(x));
+    (d.hires_detail||[]).forEach(x=>merged.hires_detail.push(x));
+  });
+  return merged;
+}
+
+function renderQuarter() {
+  const year = document.getElementById('qYear').value;
+  const q    = currentQ;
+
+  // Summary stats
+  if (q === 'all') {
+    const qs  = ['Q1','Q2','Q3','Q4'];
+    const hires = qs.map(qq => (QDATA[year+'-'+qq]||{}).hires||0);
+    const terms = qs.map(qq => (QDATA[year+'-'+qq]||{}).terms||0);
+    const vols  = qs.map(qq => (QDATA[year+'-'+qq]||{}).vol||0);
+    const invs  = qs.map(qq => (QDATA[year+'-'+qq]||{}).inv||0);
+    const net   = hires.reduce((a,b)=>a+b,0) - terms.reduce((a,b)=>a+b,0);
+    const netSign = net>=0?'+':'';
+    const netCol  = net>=0?C.green:C.red;
+
+    document.getElementById('qSummary').innerHTML =
+      stat(hires.reduce((a,b)=>a+b,0), 'Total Hires', C.green) +
+      stat(terms.reduce((a,b)=>a+b,0), 'Total Exits', C.red) +
+      stat(vols.reduce((a,b)=>a+b,0),  'Voluntary',   C.orange) +
+      stat(invs.reduce((a,b)=>a+b,0),  'Involuntary', C.rose) +
+      stat(netSign+net, 'Net Change', netCol);
+
+    // Bar chart by quarter
+    renderChart1(qs.map(qq=>year+' '+qq), hires, terms);
+    renderChart2(qs.map(qq=>year+' '+qq), vols,  invs);
+
+    // Aggregate exit/hire details and reasons
+    const all = mergeQ(qs.map(qq=>year+'-'+qq));
+    renderReasons(all.vol_reasons, all.inv_reasons);
+    renderTables(all.exits_detail, all.hires_detail);
+  } else {
+    const d = QDATA[year+'-'+q] || {};
+    const net = (d.hires||0)-(d.terms||0);
+    const netSign = net>=0?'+':'';
+    const netCol  = net>=0?C.green:C.red;
+
+    document.getElementById('qSummary').innerHTML =
+      stat(d.hires||0, 'Hires',        C.green) +
+      stat(d.terms||0, 'Exits',        C.red) +
+      stat(d.vol||0,   'Voluntary',    C.orange) +
+      stat(d.inv||0,   'Involuntary',  C.rose) +
+      stat(netSign+net,'Net Change',   netCol);
+
+    // Monthly breakdown within quarter
+    const qMonths = {Q1:['Jan','Feb','Mar'],Q2:['Apr','May','Jun'],Q3:['Jul','Aug','Sep'],Q4:['Oct','Nov','Dec']};
+    renderChart1(qMonths[q], [null,null,null],[null,null,null]); // placeholder — no monthly breakdown in data
+    renderChart2(qMonths[q], [null,null,null],[null,null,null]);
+
+    // Show full quarter bar
+    renderChart1([q], [d.hires||0], [d.terms||0]);
+    renderChart2([q], [d.vol||0],   [d.inv||0]);
+    renderReasons(d.vol_reasons||{}, d.inv_reasons||{});
+    renderTables(d.exits_detail||[], d.hires_detail||[]);
+  }
+}
+
+function stat(val, label, color) {
+  return '<div class="q-stat"><div class="q-stat-value" style="color:'+color+'">'+val+'</div><div class="q-stat-label">'+label+'</div></div>';
+}
+
+function renderChart1(labels, hires, terms) {
+  if (qChart1) qChart1.destroy();
+  qChart1 = new Chart('cQ1', {type:'bar',data:{labels,datasets:[
+    {label:'New Hires',data:hires,backgroundColor:C.green,borderRadius:4},
+    {label:'Exits',    data:terms,backgroundColor:C.red,  borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+}
+function renderChart2(labels, vol, inv) {
+  if (qChart2) qChart2.destroy();
+  qChart2 = new Chart('cQ2', {type:'bar',data:{labels,datasets:[
+    {label:'Voluntary',  data:vol,backgroundColor:C.orange,borderRadius:4},
+    {label:'Involuntary',data:inv,backgroundColor:C.red,   borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+}
+function renderReasons(vr, ir) {
+  const vrL=Object.keys(vr), vrV=Object.values(vr);
+  const irL=Object.keys(ir), irV=Object.values(ir);
+  if (qChartVR) qChartVR.destroy();
+  if (qChartIR) qChartIR.destroy();
+  if (vrL.length) {
+    qChartVR = new Chart('cQVR',{type:'bar',data:{labels:vrL,datasets:[{data:vrV,backgroundColor:'rgba(234,88,12,.8)',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+  } else {
+    document.getElementById('cQVR').getContext('2d').clearRect(0,0,9999,9999);
+  }
+  if (irL.length) {
+    qChartIR = new Chart('cQIR',{type:'bar',data:{labels:irL,datasets:[{data:irV,backgroundColor:'rgba(220,38,38,.8)',borderRadius:4,barThickness:16}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+  } else {
+    document.getElementById('cQIR').getContext('2d').clearRect(0,0,9999,9999);
+  }
+}
+function typeLabel(t) {
+  if (t.includes('Voluntary'))   return '<span class="pill pill-orange">Voluntary</span>';
+  if (t.includes('Involuntary')) return '<span class="pill pill-red">Involuntary</span>';
+  if (t.includes('Death'))       return '<span class="pill pill-purple">Death</span>';
+  return '<span class="pill pill-blue">'+t+'</span>';
+}
+function renderTables(exits, hires) {
+  document.getElementById('qExitsBody').innerHTML = exits.length
+    ? exits.sort((a,b)=>a.date.localeCompare(b.date)).map(e =>
+        '<tr><td>'+e.date+'</td><td class="num">'+e.name+'</td><td>'+e.dept+'</td><td>'+typeLabel(e.type)+'</td><td>'+e.reason+'</td></tr>'
+      ).join('')
+    : '<tr><td colspan="5" style="color:var(--text-muted);text-align:center;padding:20px">No exits in this period</td></tr>';
+
+  document.getElementById('qHiresBody').innerHTML = hires.length
+    ? hires.sort((a,b)=>a.date.localeCompare(b.date)).map(h =>
+        '<tr><td>'+h.date+'</td><td class="num">'+h.name+'</td><td>'+h.dept+'</td></tr>'
+      ).join('')
+    : '<tr><td colspan="3" style="color:var(--text-muted);text-align:center;padding:20px">No hires in this period</td></tr>';
+}
+
+// Init quarterly
+renderQuarter();
+
+// ── Annual Charts ─────────────────────────────────────────────
 const YRS=["2020", "2021", "2022", "2023", "2024", "2025", "2026"];
-new Chart('cHC',{type:'line',data:{labels:YRS,datasets:[{label:'Headcount',data:[21, 51, 82, 88, 102, 111, 126],borderColor:C.blue,backgroundColor:'rgba(37,99,235,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.blue,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cHT',{type:'bar',data:{labels:YRS,datasets:[{label:'New Hires',data:[4, 30, 42, 27, 34, 58, 53],backgroundColor:C.green,borderRadius:4},{label:'Exits',data:[0, 0, 11, 21, 20, 49, 36],backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cTO',{type:'line',data:{labels:YRS,datasets:[{label:'Turnover %',data:[0.0, 0.0, 16.5, 24.3, 20.8, 45.2, 30.3],borderColor:C.amber,backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.amber,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'},ticks:{callback:v=>v+'%'}}}}});
+new Chart('cHC',{type:'line',data:{labels:YRS,datasets:[{label:'Headcount',data:[6, 20, 29, 36, 49, 84, 129],borderColor:C.blue,backgroundColor:'rgba(37,99,235,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.blue,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cHT',{type:'bar',data:{labels:YRS,datasets:[{label:'New Hires',data:[4, 30, 42, 27, 34, 58, 56],backgroundColor:C.green,borderRadius:4},{label:'Exits',data:[0, 0, 11, 21, 20, 49, 36],backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cTO',{type:'line',data:{labels:YRS,datasets:[{label:'Turnover %',data:[0.0, 0.0, 44.9, 64.6, 46.5, 72.6, 33.6],borderColor:C.amber,backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:C.amber,pointBorderColor:'#fff',pointBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#F3F4F6'},ticks:{callback:v=>v+'%'}}}}});
 new Chart('cVI',{type:'bar',data:{labels:YRS,datasets:[{label:'Voluntary',data:[0, 0, 1, 7, 11, 8, 8],backgroundColor:C.orange,borderRadius:4},{label:'Involuntary',data:[0, 0, 10, 14, 9, 40, 28],backgroundColor:C.red,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cMon',{type:'bar',data:{labels:["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10", "2026-11", "2026-12"],datasets:[{label:'New Hires',data:[11, 4, 1, 1, 3, 6, 1, 3, 12, 3, 5, 8, 9, 5, 11, 9, 8, 4, 5, 2, 0, 0, 0, 0],backgroundColor:'rgba(22,163,74,.75)',borderRadius:3},{label:'Exits',data:[2, 22, 0, 6, 4, 4, 3, 1, 2, 1, 1, 3, 3, 5, 4, 8, 8, 5, 3, 0, 0, 0, 0, 0],backgroundColor:'rgba(220,38,38,.75)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cDept',{type:'bar',data:{labels:["Sales", "Engineering", "Vi Product", "Data", "Acquire Deployment", "General", "Transform R&D", "HR", "Acquire Client Services", "Finance"],datasets:[{data:[26, 22, 15, 13, 9, 6, 4, 4, 4, 3],backgroundColor:PAL,borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
-new Chart('cLoc',{type:'doughnut',data:{labels:["USA - Remote", "Israel", "USA - NY", "USA - Austin", "USA - Nashville", "Europe", "Canada", "LATAM"],datasets:[{data:[58, 48, 8, 4, 4, 2, 1, 1],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
-new Chart('cGen',{type:'doughnut',data:{labels:["Female", "Male"],datasets:[{data:[40, 86],backgroundColor:[C.blue,C.pink,C.teal],borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}});
-new Chart('cTen',{type:'bar',data:{labels:['< 1 yr','1-2 yrs','2-4 yrs','4+ yrs'],datasets:[{data:[64, 22, 19, 23],backgroundColor:[C.red,C.orange,C.amber,C.green],borderRadius:6,barThickness:36}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
-new Chart('cDiv',{type:'doughnut',data:{labels:["R&D", "S&M", "Product", "G&A", "COGS"],datasets:[{data:[42, 29, 22, 16, 16],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+new Chart('cMon',{type:'bar',data:{labels:["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10", "2026-11", "2026-12"],datasets:[{label:'New Hires',data:[11, 4, 1, 1, 3, 6, 1, 3, 12, 3, 5, 8, 9, 5, 11, 9, 7, 4, 5, 4, 2, 0, 0, 0],backgroundColor:'rgba(22,163,74,.75)',borderRadius:3},{label:'Exits',data:[2, 22, 0, 6, 4, 4, 3, 1, 2, 1, 1, 3, 3, 5, 4, 8, 8, 5, 3, 0, 0, 0, 0, 0],backgroundColor:'rgba(220,38,38,.75)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cDept',{type:'bar',data:{labels:["Sales", "Engineering", "Vi Product", "Data", "Acquire Deployment", "General", "Transform R&D", "HR", "Acquire Client Services", "Finance"],datasets:[{data:[29, 22, 16, 13, 9, 6, 4, 4, 4, 3],backgroundColor:PAL,borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
+new Chart('cLoc',{type:'doughnut',data:{labels:["USA - Remote", "Israel", "USA - NY", "USA - Austin", "USA - Nashville", "Europe", "Canada", "LATAM"],datasets:[{data:[60, 49, 8, 4, 4, 2, 1, 1],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
+new Chart('cGen',{type:'doughnut',data:{labels:["Female", "Male"],datasets:[{data:[42, 86],backgroundColor:[C.blue,C.pink,C.teal],borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom'}}}});
+new Chart('cTen',{type:'bar',data:{labels:['< 1 yr','1-2 yrs','2-4 yrs','4+ yrs'],datasets:[{data:[63, 23, 20, 23],backgroundColor:[C.red,C.orange,C.amber,C.green],borderRadius:6,barThickness:36}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#F3F4F6'}}}}});
+new Chart('cDiv',{type:'doughnut',data:{labels:["R&D", "S&M", "Product", "G&A", "COGS"],datasets:[{data:[42, 32, 23, 16, 16],backgroundColor:PAL,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}});
 new Chart('cVR',{type:'bar',data:{labels:["Other employment", "Personal Issues", "Changes in company needs", "Performance", "Relocation", "End of Season", "Closing company"],datasets:[{data:[16, 10, 2, 2, 1, 1, 1],backgroundColor:'rgba(234,88,12,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
 new Chart('cIR',{type:'bar',data:{labels:["Lay off", "Performance", "Changes in company needs", "End of Season", "Personal Issues", "Other employment"],datasets:[{data:[45, 22, 17, 3, 2, 1],backgroundColor:'rgba(220,38,38,.8)',borderRadius:4,barThickness:18}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#F3F4F6'}},y:{grid:{display:false}}}}});
 </script>
